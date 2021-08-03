@@ -66,6 +66,59 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void showLoginDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Welcome back!',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(Icons.person),
+                        hintText: 'Enter your username',
+                        labelText: 'Username'),
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(Icons.vpn_key),
+                        hintText: 'Enter your password',
+                        labelText: 'Password'),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  MaterialButton(
+                    onPressed: () {},
+                    color: Colors.teal,
+                    minWidth: double.infinity,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100)),
+                    textColor: Colors.white,
+                    child: Text('Login'),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +130,8 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           isLastPage()
-              ? IconButton(onPressed: nextPage, icon: Icon(Icons.check_circle))
+              ? IconButton(
+                  onPressed: showLoginDialog, icon: Icon(Icons.check_circle))
               : IconButton(onPressed: nextPage, icon: Icon(Icons.arrow_forward))
         ],
       ),
